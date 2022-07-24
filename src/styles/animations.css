@@ -29,6 +29,7 @@ div {
     -moz-animation-iteration-count: infinite;
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
+    left: 0;
 }
 
 .drop:before {
@@ -40,6 +41,7 @@ div {
     border-right: 10px solid transparent;
     border-bottom: 30px solid rgba(255, 255, 255, 1);
     top: -22px;
+    left: 0px;
 }
 
 .wave {
