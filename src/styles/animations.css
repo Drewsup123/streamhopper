@@ -1,11 +1,12 @@
-body {
+#wave-animation {
     background-color: #3498db;
     overflow: hidden;
+    height: 100vh;
 }
 
-div {
+/* div {
     margin: 175px auto;
-}
+} */
 
 .drop {
     position: relative;
@@ -30,6 +31,7 @@ div {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
     left: 0;
+    margin: 175px auto;
 }
 
 .drop:before {
@@ -45,6 +47,7 @@ div {
 }
 
 .wave {
+    margin: 175px auto;
     position: relative;
     opacity: 0;
     top: 0;
