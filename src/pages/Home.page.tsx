@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <div className="homepage">
             <div id="wave-animation">
-                <div className="drop"></div>
+                {/* <div className="drop"></div> */}
                 <div className="wave"></div>
             </div>
             <input 
