@@ -1,1 +1,2 @@
-export const AUTOCOMPLETE_API_URL = process.env.REACT_APP_API_URL + `autocomplete-search/?${process.env.REACT_APP_API_KEY}`
+export const AUTOCOMPLETE_API_URL = process.env.REACT_APP_API_URL + `autocomplete-search/?apiKey=${process.env.REACT_APP_API_KEY}&search_type=2`;
+export const STREAMING_SOURCES_BY_ID = (id: string) => process.env.REACT_APP_API_URL + `title/${id}/sources/?apiKey=${process.env.REACT_APP_API_KEY}`

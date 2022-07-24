@@ -1,8 +1,15 @@
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import React, {useState, useEffect} from "react";
+import { Link } from "react-router-dom";
+import { AUTOCOMPLETE_API_URL } from "../constants/apiUrls.constant";
+import useDebounce from "../hooks/useDebounce";
+import { ISearchResult } from "../interfaces/home.interface";
 
 const Home = () => {
     const [search, setSearch] = useState<string>("");
+    const [results, setResults] = useState<ISearchResult[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
+    const debouncedValue = useDebounce(search, 500);
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -12,29 +19,23 @@ const Home = () => {
     }
 
     const onSubmitSearch = () => {
-        const options = {
-            method: 'POST',
-            url: 'https://watch-here.p.rapidapi.com/wheretowatch',
-            params: {title: 'stranger things', mediaType: 'tv show'},
-            headers: {
-              'content-type': 'application/json',
-              'X-RapidAPI-Key': '9658954ef1msh71351ef6bc24b36p12c541jsn1a9e28b64ec6',
-              'X-RapidAPI-Host': 'watch-here.p.rapidapi.com'
-            },
-            data: {mediaType: "movie", title: search}, //'{"mediaType":"movie","title":"Incredibles 2"}'
-          };
-          
-          axios.request(options).then(function (response) {
-              console.log(response.data);
-          }).catch(function (error) {
-              console.error(error);
-          });
+        setLoading(true);
+        axios.get(AUTOCOMPLETE_API_URL + `&search_value=${debouncedValue}`)
+        .then((res: AxiosResponse) => {
+            console.log("results response: ", res);
+            setResults(res.data.results);
+
+        }).catch((err: AxiosError) => {
+            console.log(err);
+        }).finally(() => {
+            setLoading(false);
+        })
     }
 
     useEffect(() => {
-        console.log("Search: ", search);
-        onSubmitSearch()
-    }, [search])
+        onSubmitSearch();
+        //es-lint-disable-next-line
+    }, [debouncedValue])
 
     return (
         <div className="homepage">
@@ -42,13 +43,37 @@ const Home = () => {
                 {/* <div className="drop"></div> */}
                 <div className="wave"></div>
             </div>
-            <input 
-                className="homepage-search-input"
-                value={search}
-                onChange={handleSearchChange}
-                placeholder="Search for any movie or tv show..."
-                onSubmit={onSubmitSearch}
-            />
+            <div className="homepage-search-wrapper">
+                <input 
+                    className="homepage-search-input"
+                    value={search}
+                    onChange={handleSearchChange}
+                    placeholder="Search for any movie or tv show..."
+                    onSubmit={onSubmitSearch}
+                />
+                {
+                    search
+                    ?
+                    <div className="homepage-search-results">
+                        {
+                            loading
+                            ?
+                            <span>Loading...</span>
+                            :results.map((result: ISearchResult) => (
+                                <Link to={`/${result.id}`} state={result} className="homepage-search-result" key={result.id}>
+                                    {/* TODO: Add placeholder image if null */}
+                                    <img src={result.image_url || ""} style={{height: 50, width: 50}} alt="movie" />
+                                    <div className="search-result-info">
+                                        <h6>{result.name}</h6>
+                                        <span>{result.type === "movie" ? "Movie" : "Series"} - {result.year}</span>
+                                    </div>
+                                </Link>
+                            ))
+                        }
+                    </div>
+                    :null
+                }
+            </div>
         </div>
     );
 };

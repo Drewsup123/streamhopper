@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Kaisei Opti', serif !important;
 }
 
 .homepage {
@@ -8,6 +9,11 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
+}
+
+.homepage .homepage-search-wrapper {
+  position: relative;
 }
 
 .homepage .homepage-search-input {
@@ -17,6 +23,72 @@
   border: none;
   box-shadow: -5px -5px 30px 5px blue, 5px 5px 30px 5px cyan;
   background: rgba(255, 255, 255, 0.8)
+}
+
+.homepage .homepage-search-results {
+  position: absolute;
+  background:rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  width: calc(40vw + 15px);
+  top: 55px;
+  left: 0;
+  max-height: 40vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  .homepage-search-results {
+    scrollbar-width: auto;
+    scrollbar-color: #0cfa98 #3498db;
+  }
+
+  /* Chrome, Edge, and Safari */
+  .homepage-search-results::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  .homepage-search-results::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .homepage-search-results::-webkit-scrollbar-thumb {
+    background-color: #0cfa98;
+    border-radius: 27px;
+    border: 3px solid #7affc8;
+  }
+
+.homepage .homepage-search-result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  margin: 5px;
+  border-radius: 20px;
+  color: rgb(20, 20, 20);
+  text-decoration: none !important;
+}
+
+.homepage .homepage-search-result:hover {
+  transition: 0.2 all ease-in-out;
+  background-color:rgba(100, 255, 100, 0.7);
+}
+
+.homepage .homepage-search-result .search-result-info {
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  margin-left: 15px;
+  justify-content: flex-start;
+  align-items: flex-start
+}
+
+.homepage .homepage-search-result .search-result-info h6 {
+  font-size: 20px;
+  text-align: left;
 }
 
 @keyframes App-logo-spin {
