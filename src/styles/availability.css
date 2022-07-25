@@ -1,0 +1,58 @@
+.availability-page {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.availability-page .availablity-image-wrapper {
+    width: 45%;
+    height: 50vh;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.availability-page .availablity-image-wrapper img {
+    width: auto;
+    height: 100%;
+}
+
+.availability-page .title-info-wrapper {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+}
+
+.availability-page .title-info-wrapper .title-info h1 {
+    font-size: 50px;
+    font-weight: 600;
+    color: white
+}
+
+.availability-page .availability-info {
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.availability-page .availability-info .availability-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.availability-page .availability-card .checkIcon {
+    fill: greenyellow;
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+}
+
+.availability-page .availability-card h3 {
+    font-size: 35px;
+    font-weight: 600;
+    color: greenyellow;
+}

@@ -1,9 +1,14 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import WaterBackground from "../components/WaterBackground.component";
 import { AUTOCOMPLETE_API_URL } from "../constants/apiUrls.constant";
 import useDebounce from "../hooks/useDebounce";
 import { ISearchResult } from "../interfaces/home.interface";
+import LilyPad1 from "../images/lilyPad1.png";
+import LilyPad2 from "../images/lilyPad2.png";
+import LilyPadRed from "../images/lilyPadRed.png";
+import LilyPadPink from "../images/lilyPadPink.png";
 
 const Home = () => {
     const [search, setSearch] = useState<string>("");
@@ -33,16 +38,18 @@ const Home = () => {
     }
 
     useEffect(() => {
+        if(!debouncedValue) return;
         onSubmitSearch();
         //es-lint-disable-next-line
     }, [debouncedValue])
 
     return (
         <div className="homepage">
-            <div id="wave-animation">
-                {/* <div className="drop"></div> */}
-                <div className="wave"></div>
-            </div>
+            <WaterBackground />
+            <img src={LilyPadPink} alt="lily pad" id="lily_pad_1" />
+            <img src={LilyPad1} alt="Likly Pad" id="lily_pad_2" />
+            <img src={LilyPad2} alt="Likly Pad" id="lily_pad_3" />
+            <img src={LilyPadRed} alt="Likly Pad" id="lily_pad_4" />
             <div className="homepage-search-wrapper">
                 <input 
                     className="homepage-search-input"

@@ -91,6 +91,37 @@
   text-align: left;
 }
 
+#lily_pad_1 {
+  position: fixed;
+  top: 40vh;
+  left: 15vw;
+  width: 190px;
+  /* height: 80px; */
+}
+
+#lily_pad_2 {
+  position: fixed;
+  top: 30vh;
+  left: 60vw;
+  width: 210px;
+  /* height: 80px; */
+}
+
+#lily_pad_3 {
+  position: fixed;
+  top: 60vh;
+  left: 45vw;
+  width: 200px;
+  /* height: 80px; */
+}
+
+#lily_pad_4 {
+  position: fixed;
+  top: 80vh;
+  left: 65vw;
+  width: 200px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
