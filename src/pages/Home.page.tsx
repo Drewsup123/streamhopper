@@ -50,6 +50,9 @@ const Home = () => {
             <img src={LilyPad1} alt="Likly Pad" id="lily_pad_2" />
             <img src={LilyPad2} alt="Likly Pad" id="lily_pad_3" />
             <img src={LilyPadRed} alt="Likly Pad" id="lily_pad_4" />
+            <img src={LilyPadPink} alt="Likly Pad" id="lily_pad_5" />
+            <img src={LilyPad1} alt="Likly Pad" id="lily_pad_6" />
+            <img src={LilyPad2} alt="Likly Pad" id="lily_pad_7" />
             <div className="homepage-search-wrapper">
                 <input 
                     className="homepage-search-input"
