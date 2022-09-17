@@ -101,32 +101,91 @@
 
 #lily_pad_2 {
   position: fixed;
-  top: 30vh;
-  left: 60vw;
+  top: 150px;
+  left: calc(50vw - 105px);
   width: 210px;
+  animation: bob_anim 3s infinite linear;
+  animation-delay: 3s;
   /* height: 80px; */
 }
 
 #lily_pad_3 {
   position: fixed;
-  top: 60vh;
-  left: 45vw;
+  top: 50vh;
+  right: 15vw;
   width: 200px;
   /* height: 80px; */
 }
 
 #lily_pad_4 {
   position: fixed;
-  top: 80vh;
-  left: 65vw;
+  top: 63vh;
+  left: 45vw;
   width: 200px;
 }
 
-@keyframes App-logo-spin {
+#lily_pad_5 {
+  position: fixed;
+  top: 4vh;
+  right: 100px;
+  width: 230px;
+}
+
+#lily_pad_6 {
+  position: fixed;
+  top: 90vh;
+  left: 100px;
+  width: 230px;
+}
+
+#lily_pad_7 {
+  position: fixed;
+  top: 90vh;
+  left: 80vw;
+  width: 230px;
+}
+
+@keyframes spin_anim {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes bob_anim {
+  0% {
+    transform: scale(1);
+  }
+  15%{
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.9)
+  }
+  40% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+  /* from {
+    transform: scale(0.85);
+  }
+  to {
+    transform: scale(1);
+  } */
+}
+
+@media(max-width: 900px){
+  .homepage .homepage-search-input {
+    width: 80vw;
+  }
+  .homepage .homepage-search-results{
+    width: calc(90vw + 15px)
+  }
+  #lily_pad_2, #lily_pad_3, #lily_pad_7 {
+    display: none;
   }
 }
