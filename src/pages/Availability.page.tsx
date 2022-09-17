@@ -1,37 +1,40 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import React, {useState, useEffect} from 'react';
-import { useLocation, useNavigate, useParams  } from 'react-router-dom'
-import WaterBackground from '../components/WaterBackground.component';
-import { STREAMING_SOURCES_BY_ID } from '../constants/apiUrls.constant';
-import CheckIcon from '../icons/check.icon';
-import { ISearchResult, ITypeResult } from '../interfaces/home.interface';
-import "../styles/availability.css"
+import axios, { AxiosError, AxiosResponse } from "axios";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import WaterBackground from "../components/WaterBackground.component";
+import { STREAMING_SOURCES_BY_ID } from "../constants/apiUrls.constant";
+import CheckIcon from "../icons/check.icon";
+import { ISearchResult, ITypeResult } from "../interfaces/home.interface";
+import "../styles/availability.css";
 
 const Availablity = () => {
     const navigate = useNavigate();
     const params = useParams();
     const location: any = useLocation();
-    const {titleId} = params;
-    const [titleData, setTitleData] = useState<ISearchResult | null>(location.state || null)
+    const { titleId } = params;
+    const [titleData, setTitleData] = useState<ISearchResult | null>(
+        location.state || null
+    );
     const [data, setData] = useState<ITypeResult[]>([]);
 
     const getTitleAvailablity = () => {
-        axios.get(STREAMING_SOURCES_BY_ID(titleId || ""))
-        .then((res: AxiosResponse) => {
-            console.log("Res: ", res);
-            setData(res.data);
-        })
-        .catch((err: AxiosError) => {
-            console.log("Err: ", err);
-        })
-    }
+        axios
+            .get(STREAMING_SOURCES_BY_ID(titleId || ""))
+            .then((res: AxiosResponse) => {
+                console.log("Res: ", res);
+                setData(res.data);
+            })
+            .catch((err: AxiosError) => {
+                console.log("Err: ", err);
+            });
+    };
 
     useEffect(() => {
-        if(!titleId){
+        if (!titleId) {
             navigate("/");
             return;
         }
-        if(titleId && !location.state){
+        if (titleId && !location.state) {
             //? Make a call to the endpoint to get movie/show info
         }
         getTitleAvailablity();
@@ -41,9 +44,12 @@ const Availablity = () => {
     console.log("Title id: ", titleId);
     console.log("Location State: ", location.state);
 
-    return(
+    return (
         <div className="availability-page">
             <WaterBackground />
+            <Link className="backBtn" to="/">
+                Search for another Movie/ TV Show
+            </Link>
             <div className="availablity-image-wrapper">
                 <img src={titleData?.image_url || "placeholder"} alt="Poster" />
             </div>
@@ -52,18 +58,16 @@ const Availablity = () => {
                     <h1>{titleData?.name}</h1>
                 </div>
                 <div className="availability-info">
-                    {
-                        data.map((avail: ITypeResult) => (
-                            <div className="availability-card">
-                                <CheckIcon className="checkIcon" />
-                                <h3>{avail.name}</h3>
-                            </div>
-                        ))
-                    }
+                    {data.map((avail: ITypeResult) => (
+                        <div className="availability-card">
+                            <CheckIcon className="checkIcon" />
+                            <h3>{avail.name}</h3>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Availablity;
